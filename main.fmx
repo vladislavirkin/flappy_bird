@@ -75,7 +75,7 @@ object Form1: TForm1
             end
           end
         end
-        object Pie1: TPie
+        object PieWing: TPie
           Fill.Kind = Gradient
           Fill.Gradient.Points = <
             item

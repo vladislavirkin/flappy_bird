@@ -15,7 +15,7 @@ type
     Ellipse2: TEllipse;
     Circle1: TCircle;
     Circle2: TCircle;
-    Pie1: TPie;
+    PieWing: TPie;
     FloatAnimationWing: TFloatAnimation;
     LayoutObstacle: TLayout;
     Rectangle1: TRectangle;
@@ -117,7 +117,48 @@ begin
 end;
 
 procedure TForm1.Reset;
+var
+  p: Single;
+  I: Integer;
+  c: TLayout;
+  t: TPointF;
 begin
+  RandSeed := 342;
+  TagFloat := Random;
+  p := LayoutWorld.Width;
+  LayoutObstacle.Position.X := p;
+
+  for I := 0 to LayoutWorld.ChildrenCount - 1 do
+  begin
+    if not (LayoutWorld.Children[I] is TLayout) then
+      Continue;
+
+    c := TLayout(LayoutWorld.Children[I]);
+    if c = LayoutBird then
+      Continue;
+
+    WayMaker(c);
+
+    if c = LayoutObstacle then
+      Continue;
+
+    p := p + LayoutObstacle.Width + maxDistance;
+    c.Position.X := p;
+  end;
+
+  with LayoutWorld do
+  begin
+    t := PointF(Width, Height);
+  end;
+
+  with LayoutBird do
+  begin
+    Position.Point := (t - PointF(Width, Height)) * 0.5;
+  end;
+
+  LayoutBird.RotationAngle := 0;
+
+  PieWing.RotationAngle := -90;
 
 end;
 
@@ -141,6 +182,10 @@ begin
 
   with TRectangle(aMaster.Children[0]) do
     Height := h.Y + m.Y;
+  with TRectangle(aMaster.Children[1]) do
+    Height := h.Y + m.Y;
+
+  aMaster.Tag := 0;
 end;
 
 procedure TForm1.FormCreate(Sender: TObject);
