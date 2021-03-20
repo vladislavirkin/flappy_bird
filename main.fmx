@@ -2,10 +2,141 @@ object Form1: TForm1
   Left = 0
   Top = 0
   Caption = 'Form1'
-  ClientHeight = 295
-  ClientWidth = 451
+  ClientHeight = 454
+  ClientWidth = 443
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  OnKeyDown = FormKeyDown
   DesignerMasterStyle = 0
+  object LayoutWorld: TLayout
+    Align = Client
+    Size.Width = 443.000000000000000000
+    Size.Height = 454.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object LayoutBird: TLayout
+      Position.X = 88.000000000000000000
+      Position.Y = 192.000000000000000000
+      TabOrder = 0
+      object Ellipse1: TEllipse
+        Fill.Kind = Gradient
+        Fill.Gradient.Points = <
+          item
+            Color = xFFECF239
+            Offset = 0.000000000000000000
+          end
+          item
+            Color = xFF23EDE6
+            Offset = 1.000000000000000000
+          end>
+        Fill.Gradient.StartPosition.X = 0.500000000000000000
+        Fill.Gradient.StartPosition.Y = 1.000000000000000000
+        Fill.Gradient.StopPosition.X = 0.499999970197677600
+        Fill.Gradient.StopPosition.Y = 0.000000000000000000
+        Position.X = 8.000000000000000000
+        Position.Y = 32.000000000000000000
+        Scale.X = 0.300000011920929000
+        Scale.Y = 0.300000011920929000
+        Size.Width = 113.000000000000000000
+        Size.Height = 57.000000000000000000
+        Size.PlatformDefault = False
+        object Ellipse2: TEllipse
+          Fill.Color = claBurlywood
+          HitTest = False
+          Position.X = 55.000000000000000000
+          Position.Y = -16.000000000000000000
+          RotationAngle = -5.000000000000000000
+          Size.Width = 69.000000000000000000
+          Size.Height = 42.000000000000000000
+          Size.PlatformDefault = False
+          object Circle1: TCircle
+            Fill.Color = claCoral
+            Locked = True
+            HitTest = False
+            Size.Width = 50.000000000000000000
+            Size.Height = 42.000000000000000000
+            Size.PlatformDefault = False
+            object Circle2: TCircle
+              Fill.Color = claBrown
+              Locked = True
+              HitTest = False
+              Position.X = 25.000000000000000000
+              Position.Y = 16.000000000000000000
+              Size.Width = 17.000000000000000000
+              Size.Height = 18.000000000000000000
+              Size.PlatformDefault = False
+            end
+          end
+        end
+        object Pie1: TPie
+          Fill.Kind = Gradient
+          Fill.Gradient.Points = <
+            item
+              Color = claCoral
+              Offset = 0.000000000000000000
+            end
+            item
+              Color = xFF927109
+              Offset = 0.854037284851074200
+            end>
+          Fill.Gradient.StartPosition.Y = 0.850103735923767100
+          Fill.Gradient.StopPosition.X = 1.000000000000000000
+          Fill.Gradient.StopPosition.Y = 0.149896234273910500
+          Locked = True
+          HitTest = False
+          Position.X = 8.000000000000000000
+          Position.Y = -40.000000000000000000
+          RotationAngle = 170.000000000000000000
+          Size.Width = 105.000000000000000000
+          Size.Height = 129.000000000000000000
+          Size.PlatformDefault = False
+          Stroke.Kind = None
+          EndAngle = -90.000000000000000000
+          object FloatAnimationWing: TFloatAnimation
+            AnimationType = InOut
+            AutoReverse = True
+            Enabled = True
+            Duration = 0.200000002980232200
+            Interpolation = Sinusoidal
+            Loop = True
+            OnProcess = FloatAnimationWingProcess
+            PropertyName = 'EndAngle'
+            StartValue = -90.000000000000000000
+            StopValue = 90.000000000000000000
+          end
+        end
+      end
+    end
+    object LayoutObstacle: TLayout
+      Align = Vertical
+      Position.X = 288.000000000000000000
+      Size.Width = 50.000000000000000000
+      Size.Height = 454.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      object Rectangle1: TRectangle
+        Align = Top
+        Fill.Color = claAqua
+        Locked = True
+        HitTest = False
+        Size.Width = 50.000000000000000000
+        Size.Height = 129.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Kind = None
+      end
+      object Rectangle2: TRectangle
+        Align = Bottom
+        Fill.Color = claAqua
+        Locked = True
+        HitTest = False
+        Position.Y = 325.000000000000000000
+        Size.Width = 50.000000000000000000
+        Size.Height = 129.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Kind = None
+      end
+    end
+  end
 end
