@@ -38,7 +38,8 @@ implementation
 {$R *.fmx}
 
 const
-  maxObstacle: single = 200;
+  maxDistance: single = 200;
+  maxCountObstacles: Integer = 5;
 
 procedure TForm1.FloatAnimationWingProcess(Sender: TObject);
 var
@@ -68,7 +69,8 @@ begin
 
     if c.Position.X + LayoutObstacle.Width < 0 then
     begin
-      
+      c.Position.X := maxCountObstacles * (LayoutObstacle.Width + maxDistance) -
+                   LayoutBird.Width;
     end
     else
     begin
@@ -99,10 +101,10 @@ begin
   LayoutWorld.Tag := 0;
   p := LayoutWorld.Width;
   LayoutObstacle.Position.X := p;
-  for I := 2 to 15 do
+  for I := 2 to maxCountObstacles do
   begin
     c := TLayout(LayoutObstacle.Clone(LayoutWorld));
-    p := p + LayoutObstacle.Width + maxObstacle;
+    p := p + LayoutObstacle.Width + maxDistance;
     c.Position.X := p;
     LayoutWorld.AddObject(c);    
   end;  
