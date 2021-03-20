@@ -1,2 +1,2 @@
 # flappy_bird
-flappy bird delphi implementation
+flappy bird delphi fmx implementation
