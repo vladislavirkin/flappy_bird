@@ -17,9 +17,13 @@ object Form1: TForm1
     Size.Height = 454.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 0
+    OnMouseDown = LayoutWorldMouseDown
     object LayoutBird: TLayout
-      Position.X = 88.000000000000000000
-      Position.Y = 192.000000000000000000
+      Position.X = 176.000000000000000000
+      Position.Y = 232.000000000000000000
+      Size.Width = 42.000000000000000000
+      Size.Height = 26.000000000000000000
+      Size.PlatformDefault = False
       TabOrder = 0
       object Ellipse1: TEllipse
         Fill.Kind = Gradient
@@ -37,11 +41,11 @@ object Form1: TForm1
         Fill.Gradient.StopPosition.X = 0.499999970197677600
         Fill.Gradient.StopPosition.Y = 0.000000000000000000
         Position.X = 8.000000000000000000
-        Position.Y = 32.000000000000000000
+        Position.Y = 8.000000000000000000
         Scale.X = 0.300000011920929000
         Scale.Y = 0.300000011920929000
         Size.Width = 113.000000000000000000
-        Size.Height = 57.000000000000000000
+        Size.Height = 49.000000000000000000
         Size.PlatformDefault = False
         object Ellipse2: TEllipse
           Fill.Color = claBurlywood
@@ -98,7 +102,6 @@ object Form1: TForm1
           object FloatAnimationWing: TFloatAnimation
             AnimationType = InOut
             AutoReverse = True
-            Enabled = True
             Duration = 0.200000002980232200
             Interpolation = Sinusoidal
             Loop = True
@@ -108,6 +111,22 @@ object Form1: TForm1
             StopValue = 90.000000000000000000
           end
         end
+      end
+      object FloatAnimationRotating: TFloatAnimation
+        Delay = 0.200000002980232200
+        Duration = 0.500000000000000000
+        PropertyName = 'RotationAngle'
+        StartValue = 0.000000000000000000
+        StartFromCurrent = True
+        StopValue = 100.000000000000000000
+      end
+      object FloatAnimationFalling: TFloatAnimation
+        Duration = 0.200000002980232200
+        OnFinish = FloatAnimationFallingFinish
+        PropertyName = 'Position.Y'
+        StartValue = 0.000000000000000000
+        StartFromCurrent = True
+        StopValue = 0.000000000000000000
       end
     end
     object LayoutObstacle: TLayout

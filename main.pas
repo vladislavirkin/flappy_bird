@@ -20,14 +20,20 @@ type
     LayoutObstacle: TLayout;
     Rectangle1: TRectangle;
     Rectangle2: TRectangle;
+    FloatAnimationRotating: TFloatAnimation;
+    FloatAnimationFalling: TFloatAnimation;
     procedure FloatAnimationWingProcess(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; var KeyChar: Char;
       Shift: TShiftState);
     procedure FormCreate(Sender: TObject);
+    procedure LayoutWorldMouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Single);
+    procedure FloatAnimationFallingFinish(Sender: TObject);
   private
     { Private declarations }
   public
     procedure Reset;
+    procedure WayMaker(const aMaster: TLayout);
   end;
 
 var
@@ -41,6 +47,11 @@ const
   maxDistance: single = 200;
   maxCountObstacles: Integer = 5;
 
+procedure TForm1.FloatAnimationFallingFinish(Sender: TObject);
+begin
+  FloatAnimationRotating.Start;
+end;
+
 procedure TForm1.FloatAnimationWingProcess(Sender: TObject);
 var
   I: Integer;
@@ -51,7 +62,7 @@ begin
     if Position.X <> (LayoutWorld.Width - Width) * 0.5 then
       Position.X := (LayoutWorld.Width - Width) * 0.5;
     if LayoutWorld.AbsoluteRect.Bottom <> AbsoluteRect.Bottom then
-      Position.Y := Position.Y - RotationAngle * 0.1;
+      Position.Y := Position.Y + RotationAngle * 0.1;
   end;
 
   if not LayoutWorld.HitTest then
@@ -71,6 +82,8 @@ begin
     begin
       c.Position.X := maxCountObstacles * (LayoutObstacle.Width + maxDistance) -
                    LayoutBird.Width;
+
+      WayMaker(c);
     end
     else
     begin
@@ -86,9 +99,48 @@ begin
     Close;
 end;
 
+procedure TForm1.LayoutWorldMouseDown(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Single);
+begin
+  if not FloatAnimationWing.Running then
+    FloatAnimationWing.Start;
+
+  FloatAnimationRotating.StopAtCurrent;
+  LayoutBird.RotationAngle := -10;
+  FloatAnimationFalling.StopValue := LayoutBird.Position.Y -
+    LayoutBird.Height * 3;
+
+  if FloatAnimationFalling.StopValue < LayoutBird.Height then
+    FloatAnimationFalling.StopValue := LayoutBird.Height;
+
+  FloatAnimationFalling.Start;
+end;
+
 procedure TForm1.Reset;
 begin
 
+end;
+
+procedure TForm1.WayMaker(const aMaster: TLayout);
+var
+  h, m: TPointF;
+  r, e: Single;
+begin
+  h.X := LayoutWorld.Height;
+  h.Y := 2;
+  m.X := LayoutBird.Height * 6;
+
+  e := m.X / h.X;
+
+  repeat
+    r := Random;
+  until ((TagFloat + e) > r) and ((TagFloat - e) < r);
+
+  TagFloat := r;
+  m.Y := r * (h.X -m.X - 2 * h.Y);
+
+  with TRectangle(aMaster.Children[0]) do
+    Height := h.Y + m.Y;
 end;
 
 procedure TForm1.FormCreate(Sender: TObject);
@@ -110,7 +162,7 @@ begin
   end;  
 
   TRectangle(c.Children[0]).Fill.Color := TAlphaColors.Orange;
-  TRectangle(c.Children[0]).Fill.Color := TAlphaColors.Orange;
+  TRectangle(c.Children[1]).Fill.Color := TAlphaColors.Orange;
 
   Reset;
 end;
