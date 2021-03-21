@@ -34,6 +34,7 @@ type
   public
     procedure Reset;
     procedure WayMaker(const aMaster: TLayout);
+    procedure GameOver;
   end;
 
 var
@@ -61,8 +62,14 @@ begin
   begin
     if Position.X <> (LayoutWorld.Width - Width) * 0.5 then
       Position.X := (LayoutWorld.Width - Width) * 0.5;
-    if LayoutWorld.AbsoluteRect.Bottom <> AbsoluteRect.Bottom then
-      Position.Y := Position.Y + RotationAngle * 0.1;
+    if LayoutWorld.AbsoluteRect.Bottom > AbsoluteRect.Bottom then
+      Position.Y := Position.Y + RotationAngle * 0.1
+    else
+    begin
+      FloatAnimationWing.StopAtCurrent;
+      GameOver;
+      Exit;
+    end;
   end;
 
   if not LayoutWorld.HitTest then
@@ -97,6 +104,11 @@ procedure TForm1.FormKeyDown(Sender: TObject; var Key: Word; var KeyChar: Char;
 begin
   if Key = 27 then
     Close;
+end;
+
+procedure TForm1.GameOver;
+begin
+  LayoutWorld.HitTest := False;
 end;
 
 procedure TForm1.LayoutWorldMouseDown(Sender: TObject; Button: TMouseButton;
@@ -158,8 +170,9 @@ begin
 
   LayoutBird.RotationAngle := 0;
 
-  PieWing.RotationAngle := -90;
+  PieWing.EndAngle := -90;
 
+  LayoutBird.BringToFront;
 end;
 
 procedure TForm1.WayMaker(const aMaster: TLayout);
@@ -183,7 +196,7 @@ begin
   with TRectangle(aMaster.Children[0]) do
     Height := h.Y + m.Y;
   with TRectangle(aMaster.Children[1]) do
-    Height := h.Y + m.Y;
+    Height := h.X - h.Y - m.Y - m.X;
 
   aMaster.Tag := 0;
 end;
