@@ -13,7 +13,7 @@ object Form1: TForm1
   DesignerMasterStyle = 0
   object RectangleHint: TRectangle
     Align = Client
-    Fill.Color = claGhostwhite
+    Fill.Color = claDeepskyblue
     Size.Width = 443.000000000000000000
     Size.Height = 454.000000000000000000
     Size.PlatformDefault = False
@@ -23,6 +23,66 @@ object Form1: TForm1
       PropertyName = 'Fill.Color'
       StartValue = claBlack
       StopValue = xFFE0E0E0
+    end
+    object Ellipse3: TEllipse
+      Fill.Color = claWhitesmoke
+      HitTest = False
+      Position.X = -24.000000000000000000
+      Position.Y = 168.000000000000000000
+      Size.Width = 129.000000000000000000
+      Size.Height = 57.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Kind = None
+    end
+    object Ellipse4: TEllipse
+      Fill.Color = claWhitesmoke
+      HitTest = False
+      Position.X = 120.000000000000000000
+      Position.Y = 168.000000000000000000
+      Size.Width = 97.000000000000000000
+      Size.Height = 57.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Kind = None
+    end
+    object Ellipse5: TEllipse
+      Fill.Color = claWhitesmoke
+      HitTest = False
+      Position.X = 280.000000000000000000
+      Position.Y = 168.000000000000000000
+      Size.Width = 65.000000000000000000
+      Size.Height = 33.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Kind = None
+    end
+    object Ellipse6: TEllipse
+      Fill.Color = claWhitesmoke
+      HitTest = False
+      Position.X = 320.000000000000000000
+      Position.Y = 168.000000000000000000
+      Size.Width = 138.000000000000000000
+      Size.Height = 65.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Kind = None
+    end
+    object Ellipse7: TEllipse
+      Fill.Color = claWhitesmoke
+      HitTest = False
+      Position.X = 56.000000000000000000
+      Position.Y = 200.000000000000000000
+      Size.Width = 81.000000000000000000
+      Size.Height = 33.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Kind = None
+    end
+    object Ellipse8: TEllipse
+      Fill.Color = claWhitesmoke
+      HitTest = False
+      Position.X = 200.000000000000000000
+      Position.Y = 176.000000000000000000
+      Size.Width = 105.000000000000000000
+      Size.Height = 57.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Kind = None
     end
   end
   object LayoutWorld: TLayout
@@ -182,12 +242,12 @@ object Form1: TForm1
         Fill.Kind = Gradient
         Fill.Gradient.Points = <
           item
-            Color = xFF5EF0D2
-            Offset = 0.248447209596633900
+            Color = xFF6DF05E
+            Offset = 0.000000000000000000
           end
           item
-            Color = xFF81F344
-            Offset = 1.000000000000000000
+            Color = xFF4BF1C9
+            Offset = 0.714285731315612800
           end>
         Fill.Gradient.StartPosition.X = 0.500000000000000000
         Fill.Gradient.StartPosition.Y = 1.000000000000000000
@@ -196,7 +256,6 @@ object Form1: TForm1
         Locked = True
         HitTest = False
         Position.Y = 325.000000000000000000
-        RotationAngle = 180.000000000000000000
         Size.Width = 50.000000000000000000
         Size.Height = 129.000000000000000000
         Size.PlatformDefault = False
@@ -206,6 +265,7 @@ object Form1: TForm1
   end
   object LayoutMessage: TLayout
     Align = Client
+    Locked = True
     Size.Width = 443.000000000000000000
     Size.Height = 454.000000000000000000
     Size.PlatformDefault = False

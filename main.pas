@@ -28,6 +28,12 @@ type
     RectangleHint: TRectangle;
     ColorAnimation1: TColorAnimation;
     Rectangle2: TRectangle;
+    Ellipse3: TEllipse;
+    Ellipse4: TEllipse;
+    Ellipse5: TEllipse;
+    Ellipse6: TEllipse;
+    Ellipse7: TEllipse;
+    Ellipse8: TEllipse;
     procedure FloatAnimationWingProcess(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; var KeyChar: Char;
       Shift: TShiftState);
@@ -158,6 +164,8 @@ begin
   btStart.Tag := 0;
   lbPointsMax.Text := IntToStr(LayoutWorld.Tag);
   lbPoints.Text := IntToStr(btStart.Tag);
+
+  RectangleHint.Fill.Color := TAlphaColors.Deepskyblue;
 end;
 
 procedure TForm1.GameOver;
@@ -227,25 +235,25 @@ begin
       lbPoints.Text := IntToStr(btStart.Tag);
     end;
 
-    if TRectangle(c.Children[0]).AbsoluteRect.IntersectsWith(r) or
-      TRectangle(c.Children[1]).AbsoluteRect.IntersectsWith(r) then
+    if (TRectangle(c.Children[0]).AbsoluteRect.IntersectsWith(r)) or
+      (TRectangle(c.Children[1]).AbsoluteRect.IntersectsWith(r)) then
+    begin
+      for k := 0 to LayoutBird.ChildrenCount - 1 do
       begin
-        for k := 0 to LayoutBird.ChildrenCount - 1 do
+        if LayoutBird.Children[k] is TControl then
         begin
-          if LayoutBird.Children[k] is TControl then
-          begin
-            r := TLayout(LayoutBird.Children[k]).AbsoluteRect;
+          r := TLayout(LayoutBird.Children[k]).AbsoluteRect;
 
-            if TRectangle(c.Children[0]).AbsoluteRect.IntersectsWith(r) or
-              TRectangle(c.Children[1]).AbsoluteRect.IntersectsWith(r) then
-            begin
-              LayoutWorld.HitTest := False;
-              ColorAnimation1.Start;
-              Exit;
-            end;
+          if TRectangle(c.Children[0]).AbsoluteRect.IntersectsWith(r) or
+            TRectangle(c.Children[1]).AbsoluteRect.IntersectsWith(r) then
+          begin
+            LayoutWorld.HitTest := False;
+            ColorAnimation1.Start;
+            Exit;
           end;
         end;
       end;
+    end;
 
 
     if c.Position.X + LayoutObstacle.Width < 0 then
