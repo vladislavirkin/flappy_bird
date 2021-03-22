@@ -8,7 +8,7 @@ uses
   FMX.Objects, FMX.Layouts, FMX.StdCtrls, FMX.Controls.Presentation;
 
 type
-  TForm1 = class(TForm)
+  TfmMain = class(TForm)
     LayoutWorld: TLayout;
     LayoutBird: TLayout;
     Ellipse1: TEllipse;
@@ -55,7 +55,7 @@ type
   end;
 
 var
-  Form1: TForm1;
+  fmMain: TfmMain;
 
 implementation
 
@@ -65,7 +65,7 @@ const
   maxDistance: single = 230;
   maxCountObstacles: Integer = 8;
 
-procedure TForm1.WayMaker(const aMaster: TLayout);
+procedure TfmMain.WayMaker(const aMaster: TLayout);
 var
   h, m: TPointF;
   r, e: Single;
@@ -91,7 +91,7 @@ begin
   aMaster.Tag := 0;
 end;
 
-procedure TForm1.createWorld;
+procedure TfmMain.createWorld;
 var
   p: Single;
   I: Integer;
@@ -119,7 +119,7 @@ begin
   Reset;
 end;
 
-procedure TForm1.Reset;
+procedure TfmMain.Reset;
 var
   p: Single;
   I: Integer;
@@ -172,7 +172,7 @@ begin
   RectangleHint.Fill.Color := TAlphaColors.Deepskyblue;
 end;
 
-procedure TForm1.GameOver;
+procedure TfmMain.GameOver;
 begin
   LayoutWorld.HitTest := False;
   btStart.Text := 'Game over' + LineFeed
@@ -185,18 +185,18 @@ begin
     LayoutWorld.Tag := btStart.Tag;
 end;
 
-procedure TForm1.btStartClick(Sender: TObject);
+procedure TfmMain.btStartClick(Sender: TObject);
 begin
   btStart.Visible := False;
   Reset;
 end;
 
-procedure TForm1.FloatAnimationFallingFinish(Sender: TObject);
+procedure TfmMain.FloatAnimationFallingFinish(Sender: TObject);
 begin
   FloatAnimationRotating.Start;
 end;
 
-procedure TForm1.FloatAnimationWingProcess(Sender: TObject);
+procedure TfmMain.FloatAnimationWingProcess(Sender: TObject);
 var
   I: Integer;
   c: TLayout;
@@ -274,13 +274,13 @@ begin
   end;
 end;
 
-procedure TForm1.LayoutBirdPainting(Sender: TObject; Canvas: TCanvas;
+procedure TfmMain.LayoutBirdPainting(Sender: TObject; Canvas: TCanvas;
   const ARect: TRectF);
 begin
 //  Canvas.ClearRect(ARect, TAlphaColors.Yellow);
 end;
 
-procedure TForm1.LayoutWorldMouseDown(Sender: TObject; Button: TMouseButton;
+procedure TfmMain.LayoutWorldMouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Single);
 begin
   if not FloatAnimationWing.Running then
@@ -297,14 +297,14 @@ begin
   FloatAnimationFalling.Start;
 end;
 
-procedure TForm1.FormKeyDown(Sender: TObject; var Key: Word; var KeyChar: Char;
+procedure TfmMain.FormKeyDown(Sender: TObject; var Key: Word; var KeyChar: Char;
   Shift: TShiftState);
 begin
   if Key = 27 then
     Close;
 end;
 
-procedure TForm1.FormCreate(Sender: TObject);
+procedure TfmMain.FormCreate(Sender: TObject);
 begin
   createWorld;
 end;

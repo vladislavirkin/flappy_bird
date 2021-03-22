@@ -3,12 +3,12 @@ program flappy_bird_app;
 uses
   System.StartUpCopy,
   FMX.Forms,
-  main in 'main.pas' {Form1};
+  main in 'main.pas' {fmMain};
 
 {$R *.res}
 
 begin
   Application.Initialize;
-  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TfmMain, fmMain);
   Application.Run;
 end.

@@ -1,7 +1,7 @@
-object Form1: TForm1
+object fmMain: TfmMain
   Left = 0
   Top = 0
-  Caption = 'Form1'
+  Caption = 'The Bird of Happiness'
   ClientHeight = 454
   ClientWidth = 443
   Position = MainFormCenter
@@ -292,7 +292,7 @@ object Form1: TForm1
     object lbPointsMax: TLabel
       Align = Top
       AutoSize = True
-      StyledSettings = [Family, Style, FontColor]
+      StyledSettings = [Family, Style]
       Margins.Top = 10.000000000000000000
       Margins.Bottom = 10.000000000000000000
       Position.Y = 10.000000000000000000
@@ -300,6 +300,7 @@ object Form1: TForm1
       Size.Height = 34.000000000000000000
       Size.PlatformDefault = False
       TextSettings.Font.Size = 25.000000000000000000
+      TextSettings.FontColor = claRed
       TextSettings.HorzAlign = Center
       Text = 'lbPointsMax'
       TabOrder = 1
@@ -307,7 +308,7 @@ object Form1: TForm1
     object lbPoints: TLabel
       Align = Bottom
       AutoSize = True
-      StyledSettings = [Family, Style, FontColor]
+      StyledSettings = [Family, Style]
       Margins.Top = 10.000000000000000000
       Margins.Bottom = 10.000000000000000000
       Position.Y = 410.000000000000000000
@@ -315,6 +316,7 @@ object Form1: TForm1
       Size.Height = 34.000000000000000000
       Size.PlatformDefault = False
       TextSettings.Font.Size = 25.000000000000000000
+      TextSettings.FontColor = claDarkviolet
       TextSettings.HorzAlign = Center
       Text = 'lbPoints'
       TabOrder = 0
