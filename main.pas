@@ -34,6 +34,7 @@ type
     Ellipse6: TEllipse;
     Ellipse7: TEllipse;
     Ellipse8: TEllipse;
+    Circle3: TCircle;
     procedure FloatAnimationWingProcess(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; var KeyChar: Char;
       Shift: TShiftState);
