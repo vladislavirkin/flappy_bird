@@ -19,13 +19,15 @@ type
     FloatAnimationWing: TFloatAnimation;
     LayoutObstacle: TLayout;
     Rectangle1: TRectangle;
-    Rectangle2: TRectangle;
     FloatAnimationRotating: TFloatAnimation;
     FloatAnimationFalling: TFloatAnimation;
     LayoutMessage: TLayout;
     lbPointsMax: TLabel;
     lbPoints: TLabel;
     btStart: TButton;
+    RectangleHint: TRectangle;
+    ColorAnimation1: TColorAnimation;
+    Rectangle2: TRectangle;
     procedure FloatAnimationWingProcess(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; var KeyChar: Char;
       Shift: TShiftState);
@@ -53,8 +55,8 @@ implementation
 {$R *.fmx}
 
 const
-  maxDistance: single = 200;
-  maxCountObstacles: Integer = 5;
+  maxDistance: single = 230;
+  maxCountObstacles: Integer = 8;
 
 procedure TForm1.WayMaker(const aMaster: TLayout);
 var
@@ -114,7 +116,7 @@ var
   c: TLayout;
   t: TPointF;
 begin
-  RandSeed := 342;
+  RandSeed := 0; //342
   TagFloat := Random;
   p := LayoutWorld.Width;
   LayoutObstacle.Position.X := p;
@@ -226,7 +228,7 @@ begin
     end;
 
     if TRectangle(c.Children[0]).AbsoluteRect.IntersectsWith(r) or
-      TRectangle(c.Children[0]).AbsoluteRect.IntersectsWith(r) then
+      TRectangle(c.Children[1]).AbsoluteRect.IntersectsWith(r) then
       begin
         for k := 0 to LayoutBird.ChildrenCount - 1 do
         begin
@@ -235,9 +237,10 @@ begin
             r := TLayout(LayoutBird.Children[k]).AbsoluteRect;
 
             if TRectangle(c.Children[0]).AbsoluteRect.IntersectsWith(r) or
-              TRectangle(c.Children[0]).AbsoluteRect.IntersectsWith(r) then
+              TRectangle(c.Children[1]).AbsoluteRect.IntersectsWith(r) then
             begin
               LayoutWorld.HitTest := False;
+              ColorAnimation1.Start;
               Exit;
             end;
           end;
@@ -262,7 +265,7 @@ end;
 procedure TForm1.LayoutBirdPainting(Sender: TObject; Canvas: TCanvas;
   const ARect: TRectF);
 begin
-  Canvas.ClearRect(ARect, TAlphaColors.Yellow);
+//  Canvas.ClearRect(ARect, TAlphaColors.Yellow);
 end;
 
 procedure TForm1.LayoutWorldMouseDown(Sender: TObject; Button: TMouseButton;
