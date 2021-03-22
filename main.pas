@@ -101,6 +101,9 @@ begin
   LayoutWorld.Tag := 0;
   p := LayoutWorld.Width;
   LayoutObstacle.Position.X := p;
+
+  c := nil;
+
   for I := 2 to maxCountObstacles do
   begin
     c := TLayout(LayoutObstacle.Clone(LayoutWorld));
